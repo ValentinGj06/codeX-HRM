@@ -1,0 +1,132 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+    /*border: solid 2px;*/
+}
+
+th, td {
+    text-align: center;
+    padding: 8px;
+}
+
+thead {
+    background-color: lightblue;
+}
+
+tbody:nth-child(even) {background-color: #f2f2f2;}
+
+.c-dark-theme tbody:nth-child(even) {background-color: #2b2f33;}
+
+table .profile-photo {
+    height: 40px;
+    width: 40px;
+}
+.profile-photo {
+    /*min-width: 140px;*/
+    /*min-height: 160px;*/
+    /*max-width: 200px;*/
+    /*max-height: 220px;*/
+    border-radius: 3% 3% 0 0;
+    width: 100%;
+}
+.working-hours {
+    position: relative;
+}
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2) !important;
+    transition: 0.3s;
+    border-radius: 5px;
+    border: 0 !important;
+    width: 100%;
+    height: auto;
+    margin: 0 0 20px 0;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2) !important;
+}
+.c-dark-theme .card {
+    box-shadow: 0 4px 8px 0 rgba(157, 183, 185, 0.2) !important;
+    transition: 0.3s;
+    border-radius: 5px;
+    border: 0 !important;
+    width: 100%;
+    height: auto;
+    margin: 0 0 20px 0;
+}
+
+.c-dark-theme .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(195, 195, 195, 0.2) !important;
+}
+#card_profile {
+    width: 220px;
+    float: left;
+}
+#card_info {
+
+}
+.user-info {
+    align-items: center;
+}
+.container {
+    padding: 10px 10px;
+}
+.chip-profile {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 3px 10px;
+    height: 50px;
+    font-size: 16px;
+    line-height: 50px;
+    border-radius: 25px;
+    background-color: #f1f1f1;
+}
+.c-dark-theme .chip-profile {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 3px 10px;
+    height: 50px;
+    font-size: 16px;
+    line-height: 50px;
+    border-radius: 25px;
+    background-color: #2b2f33;
+}
+.chip {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 5px 20px;
+    height: 50px;
+    font-size: 16px;
+    line-height: 50px;
+    border-radius: 25px;
+    background-color: #f1f1f1;
+}
+.chip img {
+    float: left;
+    margin: 0 10px 0 -25px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+.info-box-icon {
+    border-radius: 2px 0 0 2px;
+    display: block;
+    float: left;
+    height: 90px;
+    width: 90px;
+    text-align: center;
+    font-size: 45px;
+    line-height: 90px;
+    background: rgba(0,0,0,.2);
+    margin-right: 10px;
+}
+.info-box-text {
+    font-weight: bold;
+    font-size: 20px;
+}
+.width-180 {
+    width: 180px;
+}
+.pointer {
+    cursor: pointer
+}
