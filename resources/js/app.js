@@ -16,7 +16,7 @@ new Vue({
         formats: {
             input: ['YYYY-MM-DD'],
         },
-        selectedDate: new Date(),
+        selectedDate: null,
     }
 });
 new Vue({

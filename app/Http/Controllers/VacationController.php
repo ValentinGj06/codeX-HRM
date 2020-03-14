@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Day;
 use App\Vacation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class VacationController extends Controller
@@ -30,7 +32,7 @@ class VacationController extends Controller
             ->join('departments', 'user.DepartmentID', '=', 'departments.DepartmentID')
             ->join('firma', 'userinfo.FirmaID', '=', 'firma.FirmaID')
             ->where('user.UserID', '=', '598')
-            ->select('FirstName', 'LastName', 'departments.Name AS Department', 'firma.Name AS Company')
+            ->select('user.Created', 'userinfo.DateEmp', 'userinfo.UserID', 'FirstName', 'LastName', 'departments.Name AS Department', 'firma.Name AS Company')
             ->first();
 
         $employeesPerDepartment = DB::table('user')
@@ -63,11 +65,35 @@ class VacationController extends Controller
             ->select('FirstName', 'LastName', 'departments.Name AS Department')
             ->get();
 
+        $usedDays = Day::where('user_id', '=', $userInfo->UserID)->pluck('used_days')->first();
+
+        $userCreated = date_create($userInfo->DateEmp);
+        $currentDate = date_create(date('Y-m-d'));
+
+        $totalMonths = $userCreated->diff($currentDate)->m + ($userCreated->diff($currentDate)->y * 12);
+
+        $monthsCurrentYear = ($userCreated->diff($currentDate)->m);
+
+        $totalAnnualLeaveDays = floor($totalMonths / 6) * 10;
+        $totalDays = $totalAnnualLeaveDays - $usedDays;
+//        $day->user_id = $userInfo->UserID;
+
+        Day::updateOrCreate([
+            'user_id' => $userInfo->UserID
+        ],
+            [
+            'annual_leave_days' => $totalAnnualLeaveDays,
+        ]);
+
+
         return view('vacation.create', [
             'userInfo'               => $userInfo,
             'employeesPerDepartment' => $employeesPerDepartment,
             'departmentManager'      => $departmentManager,
             'shiftManagers'          => $shiftManagers,
+            'monthsCurrentYear'      => $monthsCurrentYear,
+            'totalMonths'            => $totalMonths,
+            'totalDays'              => $totalDays,
         ]);
     }
 
@@ -79,7 +105,32 @@ class VacationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $vacation = new Vacation($this->validateVacations($request));
+
+        $request->validate([
+            'vacation_date' => 'required',
+        ]);
+
+        $vacationDates = explode(",", $request->vacation_date);
+        if ($vacationDates !== '') {
+            $vacation->total_days = count($vacationDates);
+            $vacation->save();
+            $day = Day::where('user_id', '=', $request->user_id)->first();
+            $day->used_days += count($vacationDates);
+            $day->save();
+        } else {
+            return redirect('vacation')->with('warning', 'Please select days for vacation!');
+        }
+
+        foreach ($vacationDates as $vacationDate) {
+            $data['vacation_date'] = Carbon::createFromFormat('d-M-Y', $vacationDate)->format('Y-m-d');
+            $vacation->vacation_days()->create([
+                'day_off' => ($data['vacation_date']),
+                'user_id' => $request->user_id,
+            ]);
+        }
+
+        return redirect('vacation')->with('success', 'Successfully created vacation!');
     }
 
     /**
@@ -125,5 +176,21 @@ class VacationController extends Controller
     public function destroy(Vacation $vacation)
     {
         //
+    }
+
+    protected function validateVacations(Request $request)
+    {
+        return $request->validate([
+            'user_id'             => ['required', 'numeric'],
+            'date_of_application' => ['required', 'date'],
+            'full_name'           => ['required'],
+            'company'             => ['required'],
+            'department'          => ['required'],
+            'replacement'         => ['required', 'string'],
+            'department_manager'  => ['required'],
+            'shift_manager'       => ['required', 'string'],
+            'has_received'        => ['string'],
+            'note'                => ['string']
+        ]);
     }
 }

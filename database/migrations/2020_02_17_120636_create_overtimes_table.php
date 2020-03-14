@@ -27,7 +27,7 @@ class CreateOvertimesTable extends Migration
             $table->time('time_from');
             $table->time('time_to');
             $table->date('overtime_date');
-            $table->timestamps();
+//            $table->timestamps();
 
 //            $table->foreign('user_id')
 //                ->references('UserID')

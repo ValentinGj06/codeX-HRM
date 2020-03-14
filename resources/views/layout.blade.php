@@ -15,8 +15,7 @@
     <link href="{{ asset('css/done.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/bootstrap-select.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/floating-labels.css') }}" rel="stylesheet" />
-    {{--<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />--}}
-    {{--<link rel="stylesheet" type="text/css" href="{{ mix('css/semantic.min.css') }}">--}}
+    <link href="{{ asset('css/bootstrap-datepicker.css') }}" rel="stylesheet" />
 </head>
 <body class="c-app header-fixed sidebar-fixed aside-menu-fixed pace-done sidebar-lg-show">
 
@@ -79,93 +78,114 @@
     </main>
     </div>
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+{{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>--}}
 <script src="{{ mix('js/app.js') }}"></script>
-<script src="{{ asset('js/bootstrap-select.min.js') }}"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="{{ asset('js/bootstrap-datepicker.js') }}"></script>
+<script src="{{ asset('js/bootstrap-select.min.js') }}"></script>
 <script src="{{ asset('js/coreui.js') }}"></script>
-{{--<script src="{{ asset('js/main.js') }}"></script>--}}
 <!-- DARK THEME CHANGING -->
 <script src="{{ asset('js/coreui.bundle.min.js') }}"></script>
 <!-- DARK THEME CHANGING -->
 <script src="{{ asset('js/svgxuse.min.js') }}"></script>
 <script src="{{ asset('js/done.min.js') }}"></script>
 <script src="{{ asset('js/feather.min.js') }}"></script>
-{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>--}}
-{{--<script src={{ mix('js/semantic.min.js') }}></script>--}}
+
 <script>
-    $(document).ready(function(){
+    {{--$(document).ready(function(){--}}
 
-        $("#company").change(function(){
-            var companyId = $(this).val();
-            $.ajax({
-                url: 'department_by_company',
-                type: 'post',
-                data: {
-                    companyId:companyId,
-                    "_token": "{{ csrf_token() }}",
-                },
-                dataType: 'json',
-                success:function(response){
-                    var len = response.length;
-                    $("#department").empty();
-                    $("#department").append($('<option>', {
-                        value: "",
-                        selected: "selected",
-                        text: 'Select'
-                    }));
-                    for( var i = 0; i<len; i++){
-                        var department = response[i]['DEPName'];
+        {{--$("#company").change(function(){--}}
+            {{--var companyId = $(this).val();--}}
+            {{--$.ajax({--}}
+                {{--url: 'department_by_company',--}}
+                {{--type: 'post',--}}
+                {{--data: {--}}
+                    {{--companyId:companyId,--}}
+                    {{--"_token": "{{ csrf_token() }}",--}}
+                {{--},--}}
+                {{--dataType: 'json',--}}
+                {{--success:function(response){--}}
+                    {{--var len = response.length;--}}
+                    {{--$("#department").empty();--}}
+                    {{--$("#department").append($('<option>', {--}}
+                        {{--value: "",--}}
+                        {{--selected: "selected",--}}
+                        {{--text: 'Select'--}}
+                    {{--}));--}}
+                    {{--for( var i = 0; i<len; i++){--}}
+                        {{--var department = response[i]['DEPName'];--}}
 
-                        $("#department").append($('<option>', {
-                            value: department,
-                            text: department
-                        }));
+                        {{--$("#department").append($('<option>', {--}}
+                            {{--value: department,--}}
+                            {{--text: department--}}
+                        {{--}));--}}
 
-                    }
-                }
-            });
-        });
-    });
-    $(document).ready(function(){
+                    {{--}--}}
+                {{--}--}}
+            {{--});--}}
+        {{--});--}}
+    {{--});--}}
+    {{--$(document).ready(function(){--}}
 
-        $("#department").change(function(){
-            var departmentName = $(this).val();
-            $.ajax({
-                url: 'employee_by_department',
-                type: 'post',
-                data: {
-                    department: departmentName,
-                    "_token": "{{ csrf_token() }}",
-                },
-                dataType: 'json',
-                success:function(response){
-                    var len = response.length;
-                    $("#employee").empty();
-                    $("#employee").append($('<option>', {
-                        value: "",
-                        selected: "selected",
-                        text: 'Select'
-                    }));
-                    for( var i = 0; i<len; i++){
-                        var id = response[i]['PSNID'];
-                        var name = response[i]['PSNNAME'];
+        {{--$("#department").change(function(){--}}
+            {{--var departmentName = $(this).val();--}}
+            {{--$.ajax({--}}
+                {{--url: 'employee_by_department',--}}
+                {{--type: 'post',--}}
+                {{--data: {--}}
+                    {{--department: departmentName,--}}
+                    {{--"_token": "{{ csrf_token() }}",--}}
+                {{--},--}}
+                {{--dataType: 'json',--}}
+                {{--success:function(response){--}}
+                    {{--var len = response.length;--}}
+                    {{--$("#employee").empty();--}}
+                    {{--$("#employee").append($('<option>', {--}}
+                        {{--value: "",--}}
+                        {{--selected: "selected",--}}
+                        {{--text: 'Select'--}}
+                    {{--}));--}}
+                    {{--for( var i = 0; i<len; i++){--}}
+                        {{--var id = response[i]['PSNID'];--}}
+                        {{--var name = response[i]['PSNNAME'];--}}
 
-                        $("#employee").append($('<option>', {
-                            value: id,
-                            text: name
-                        }));
+                        {{--$("#employee").append($('<option>', {--}}
+                            {{--value: id,--}}
+                            {{--text: name--}}
+                        {{--}));--}}
 
-                    }
-                }
-            });
-        });
-    });
+                    {{--}--}}
+                {{--}--}}
+            {{--});--}}
+        {{--});--}}
+    {{--});--}}
     $( function() {
         $( ".datepicker" ).datepicker({
+            format: 'd-M-yyyy',
             autoOpen: false,
             firstDay: 1,
             dateFormat: 'mm-dd-yy'
+        });
+        const days = $('#annual_leave_days').val();
+        $("#datepickerVacation").datepicker({
+            format: 'd-M-yyyy',
+            inline: true,
+            lang: 'en',
+            step: 5,
+            multidate: days,
+            todayHighlight: true,
+            closeOnDateSelect: true,
+            daysOfWeekDisabled: '0',
+            weekStart: '1',
+            counter: true,
+            title: 'Choose your vacation days',
+
+
+        });
+        $('#datepickerVacation').on('changeDate', function() {
+            $('#vacationDate').val(
+                $('#datepickerVacation').datepicker('getFormattedDate')
+            );
         });
     } );
     // $(document).ready(function () {

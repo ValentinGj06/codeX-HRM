@@ -26,7 +26,7 @@ class CreateVacationsTable extends Migration
             $table->string('has_received')->nullable();
             $table->mediumText('note')->nullable();
             $table->unsignedBigInteger('total_days');
-            $table->timestamps();
+//            $table->timestamps();
 
 //            $table->foreign('user_id')
 //                ->references('UserID')

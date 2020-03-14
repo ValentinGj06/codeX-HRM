@@ -80,7 +80,7 @@ class EmployeeFilteredController extends Controller
             WHERE $whereDate
             GROUP BY PSNID, PSNNAME, DeviceIdx
             )
-            SELECT TOP 2
+            SELECT TOP 2 /* !!!PROVERI moze ke treba da se trgne (TOP 2 i ke raboti za site vraboteni) */
                PSNID
                ,PSNNAME
                ,MIN(FirstIn) AS FirstIn
@@ -89,19 +89,12 @@ class EmployeeFilteredController extends Controller
             FROM WHC
             GROUP BY PSNID, PSNNAME
             ;");
-//            $var = collect(["one", "two", "three"]);
-//            $var->paginate(2);
-//            dd($var);
-//        $employeeHours = (object) $employeeHours;
-//        $employeeHours->paginate(1);
-//        dd($employeeHours);
 
-
-        $employeeEvents = DB::connection('sqlsrv')->select("WITH CT AS (SELECT
+        /*$employeeEvents = DB::connection('sqlsrv')->select("WITH CT AS (SELECT
             EIn.PSNID, EIn.PSNNAME
-                ,CASE 
-                WHEN (CAST(CA_Out.EventTime AS time) BETWEEN '00:00:00' AND '06:40:00') AND (CAST(EIn.EventTime AS time) BETWEEN '00:00:00' AND '05:44:00') THEN CAST(DATEADD(minute, -1310, EIn.EventTime) AS date) 
-                ELSE CAST(DATEADD(minute, -0, EIn.EventTime) AS date) 
+                ,CASE
+                WHEN (CAST(CA_Out.EventTime AS time) BETWEEN '00:00:00' AND '06:40:00') AND (CAST(EIn.EventTime AS time) BETWEEN '00:00:00' AND '05:44:00') THEN CAST(DATEADD(minute, -1310, EIn.EventTime) AS date)
+                ELSE CAST(DATEADD(minute, -0, EIn.EventTime) AS date)
                 END as dt
                 ,EIn.EventTime AS LogIn
                 ,CA_Out.EventTime AS LogOut
@@ -133,13 +126,13 @@ class EmployeeFilteredController extends Controller
                 ,WorkingMinutes
             FROM CT
             WHERE $whereDate
-            ORDER BY LogIn 
-            ;");
+            ORDER BY LogIn
+            ;");*/
 //        dd($employeeHours,$employeeEvents);
 
         return view('employee_filtered')->with([
             'employee' => $employee,
-            'employeeEvents' => $employeeEvents,
+//            'employeeEvents' => $employeeEvents,
             'employeeHours' => $employeeHours,
             'dateFrom' => $request->post('date_from'),
             'dateTo' => $request->post('date_to')

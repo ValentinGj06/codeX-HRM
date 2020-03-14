@@ -7,41 +7,38 @@
     <h1>List All Employees</h1>
     <form method="POST" class="form-inline" action="employee/filtered/all">
         @csrf
-        <div class="col-md-2 col-sm-4 col-xs-8">
-            <div class="form-group">
-                <label for="date_from" class="sr-only">Date from: </label>
-                <input type="text" name="date_from" id="date_from" class="form-control datepicker"
-                       placeholder="Date from:" autocomplete="off">
+        <div class="input-group input-light mb-3 form-label-group">
+            <label for="time_from">Date (from - to)</label>
+            <div class="input-group-append">
+                <i class="input-group-text fas fa-calendar-day"></i>
             </div>
+            <input type="text" class="form-control datepicker" placeholder="Date from:"
+                   name="date_from"
+                   id="date_from"
+                   autocomplete="off">
+            <div class="input-group-append">
+                <i class="input-group-text fas fa-calendar-day"></i>
+            </div>
+            <input type="text" class="form-control datepicker" placeholder="Date to:"
+                   name="date_to"
+                   id="date_to"
+                   autocomplete="off">
         </div>
         <div class="col-md-2 col-sm-4 col-xs-8">
             <div class="form-group">
-                <label for="date_to" class="sr-only">Date to: </label>
-                <input type="text" name="date_to" id="date_to" class="form-control datepicker" placeholder="Date to:"
-                       autocomplete="off">
+                <select class="form-control selectpicker mb-3"
+                        data-style="btn-raised-default"
+                        id="company"
+                        name="company"
+                >
+                    <option hidden readonly selected value>-- select employee --</option>
+                    @foreach($allEmployee as $key => $value)
+                        <option value="<?= $value['CMPID'] ?>"><?= $value['CMPName'] ?></option>
+                    @endforeach
+                </select>
             </div>
         </div>
-        <div class="col-md-2 col-sm-4 col-xs-8">
-            <div class="form-group">
-                <div class='input-group date' id='datetimepicker6'>
-                    <input type='text' class="form-control"/>
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-2 col-sm-4 col-xs-8">
-            <div class="form-group">
-                <div class='input-group date' id='datetimepicker7'>
-                    <input type='text' class="form-control"/>
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-2 col-sm-4 col-xs-8">
+      <!--  <div class="col-md-2 col-sm-4 col-xs-8">
             <div class="form-group">
                 <select name="company" id="company" class="form-control width-180">
                     <option value="" selected="selected">Select</option>
@@ -60,16 +57,33 @@
                         <option style="{{ ($value['active'] == 'Y') ? '':'background-color:#D3D3D3' }}"
                                 value="<?= $value['DEPName'] ?>"><?= $value['DEPName'] ?></option>
                     @endforeach
-                </SELECT>
+                </select>
+            </div>
+        </div>-->
+        <div class="col-md-2 col-sm-4 col-xs-8">
+            <div class="form-group">
+                <select class="form-control selectpicker mb-3"
+                        data-style="btn-raised-default"
+                        id="department"
+                        name="department"
+                >
+                    <option hidden readonly selected value>-- select employee --</option>
+                    @foreach($allEmployee as $key => $value)
+                        <option value="<?= $value['DEPName'] ?>"><?= $value['DEPName'] ?></option>
+                    @endforeach
+                </select>
             </div>
         </div>
         <div class="col-md-2 col-sm-4 col-xs-8">
             <div class="form-group">
-                <select name="employee" id="employee" class="form-control width-180">
-                    <option value="" selected="selected">Select</option>
-                    @foreach ($allEmployee as $key => $value)
-                        <option style="{{ ($value['active'] == 'Y') ? '':'background-color:#D3D3D3' }}"
-                                value="<?= $value['PSNID'] ?>"><?= $value['PSNNAME'] ?></option>
+                <select class="form-control selectpicker mb-3"
+                        data-style="btn-raised-default"
+                        id="employee"
+                        name="employee"
+                >
+                    <option hidden readonly selected value>-- select employee --</option>
+                    @foreach($allEmployee as $key => $value)
+                        <option value="<?= $value['PSNID'] ?>"><?= $value['PSNNAME'] ?></option>
                     @endforeach
                 </select>
             </div>
@@ -111,16 +125,5 @@
 
 @endsection
 <script type="text/javascript">
-    $(function () {
-        $('#datetimepicker6').datetimepicker();
-        $('#datetimepicker7').datetimepicker({
-            useCurrent: false //Important! See issue #1075
-        });
-        $("#datetimepicker6").on("dp.change", function (e) {
-            $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
-        });
-        $("#datetimepicker7").on("dp.change", function (e) {
-            $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
-        });
-    });
+
 </script>

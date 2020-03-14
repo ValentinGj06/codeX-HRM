@@ -1,11 +1,22 @@
 table {
     border-collapse: collapse;
     width: 100%;
+}
+
+.datepicker-inline table {
+    border-collapse: collapse;
+    width: 100%;
+    height: 100%;
     /*border: solid 2px;*/
 }
 
+.datepicker-inline {
+    width: unset !important;
+    height: 50vh !important;
+}
+
 th, td {
-    text-align: center;
+    text-align: center !important;
     padding: 8px;
 }
 
@@ -21,6 +32,48 @@ table .profile-photo {
     height: 40px;
     width: 40px;
 }
+/*
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.datepicker-inline table {
+    border-collapse: collapse;
+    width: 100%;
+    height: 100%;
+}
+
+.datepicker-inline {
+    width: unset !important;
+    height: 50vh !important;
+}
+
+th, td {
+    text-align: center;
+    padding: 8px;
+} */
+.datepicker table tr td span.active {
+    background-color: #0a3544 !important;
+    border-radius: 50%;
+}
+.datepicker table tr td span {
+    display: inline-block !important;
+    width: 50px !important;
+    height: 50px !important;
+    line-height: 50px !important;
+    float: none !important;
+    margin: 1%;
+    cursor: pointer;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+
+}
+table.table-condensed thead {
+    background-color: #f5f7f7;
+}
+
 .profile-photo {
     /*min-width: 140px;*/
     /*min-height: 160px;*/

@@ -8,6 +8,10 @@
         @csrf
         <div class="row">
             <div class="col-md-2">
+                {{--<input type="text"--}}
+                       {{--id="user_id"--}}
+                       {{--name="user_id"--}}
+                       {{--value="{{ $userInfo->UserID }}" aria-label="user_id" aria-describedby="basic-addon1" hidden>--}}
                 <div class="input-group input-light mb-3 form-label-group">
                     <label for="date_of_application">Date of Application</label>
                     <div class="input-group-append">

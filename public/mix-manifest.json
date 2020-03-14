@@ -1,5 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
-    "/css/done.css": "/css/done.css"
+    "/css/done.css": "/css/done.css",
+    "/css/bootstrap-datepicker.css": "/css/bootstrap-datepicker.css",
+    "/js/bootstrap-datepicker.js": "/js/bootstrap-datepicker.js"
 }

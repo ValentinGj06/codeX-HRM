@@ -49371,7 +49371,7 @@ new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
     formats: {
       input: ['YYYY-MM-DD']
     },
-    selectedDate: new Date()
+    selectedDate: null
   }
 });
 new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
@@ -49450,6 +49450,17 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/sass/bootstrap-datepicker.scss":
+/*!**************************************************!*\
+  !*** ./resources/sass/bootstrap-datepicker.scss ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/sass/done.scss":
 /*!**********************************!*\
   !*** ./resources/sass/done.scss ***!
@@ -49462,15 +49473,16 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /***/ }),
 
 /***/ 0:
-/*!****************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/done.scss ***!
-  \****************************************************************************************/
+/*!***********************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/done.scss ./resources/sass/bootstrap-datepicker.scss ***!
+  \***********************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! C:\xampp\htdocs\time-track\resources\js\app.js */"./resources/js/app.js");
 __webpack_require__(/*! C:\xampp\htdocs\time-track\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\time-track\resources\sass\done.scss */"./resources/sass/done.scss");
+__webpack_require__(/*! C:\xampp\htdocs\time-track\resources\sass\done.scss */"./resources/sass/done.scss");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\time-track\resources\sass\bootstrap-datepicker.scss */"./resources/sass/bootstrap-datepicker.scss");
 
 
 /***/ })

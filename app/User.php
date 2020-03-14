@@ -10,6 +10,7 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    protected $table = 'user';
     /**
      * The attributes that are mass assignable.
      *
@@ -36,4 +37,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function day() {
+        return $this->hasOne(Day::class);
+    }
 }

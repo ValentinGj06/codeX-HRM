@@ -26,6 +26,7 @@ Route::post('/employee/filtered/all', 'EmployeeFilteredController@index');
 Route::get('/vacations', 'VacationController@index')->name('vacation.index');
 Route::get('/vacation', 'VacationController@create')->name('vacation.create');
 Route::post('/vacation/show', 'VacationController@show')->name('vacation.show');
+Route::post('/vacations', 'VacationController@store')->name('vacation.store');
     /* Overtime routes */
 Route::get('/overtimes', 'OvertimeController@index')->name('overtime.index');
 Route::get('/overtime', 'OvertimeController@create')->name('overtime.create');

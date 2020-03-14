@@ -3,9 +3,6 @@
 @section('title', 'Filtered Employees')
 
 @section('content')
-    {{--@php
-        dd($employeeHours);
-    @endphp--}}
     <h1>Извештај за работни саати од: {{ $dateFrom }} до: {{ $dateTo }}</h1>
     <div class="card" id="card_profile">
         <div class="container">
@@ -18,60 +15,6 @@
             </div>
         </div>
     </div>
- {{--   <div class="row">
-        <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="card" id="card_info">
-                <div class="container">
-                    <div class="info-box">
-                        <span class="info-box-icon bg-green"><i class="fas fa-sign-in-alt"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text">Прв влез</span>
-                            <span class="info-box-number"><p>{{ $employeeHours[0]->FirstIn }}</p></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="card" id="card_info">
-                <div class="container">
-                    <div class="info-box">
-                        <span class="info-box-icon bg-blue"><i class="fas fa-sign-out-alt"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text">Последен излез</span>
-                            <span class="info-box-number"><p>{{ $employeeHours[0]->LastOut }}</p></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="card" id="card_info">
-                <div class="container">
-                    <div class="info-box">
-                        <span class="info-box-icon bg-purple"><i class="fas fa-user-clock"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text">Датум</span>
-                            <span class="info-box-number"><p>{{ $employeeHours[0]->dt }}</p></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="card" id="card_info">
-                <div class="container">
-                    <div class="info-box">
-                        <span class="info-box-icon bg-yellow"><i class="far fa-hourglass"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text">Работини часа</span>
-                            <span class="info-box-number"><p>{{ $employeeHours[0]->WorkingHours }}</p></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>--}}
     <div class="row">
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="card" id="card_info">
